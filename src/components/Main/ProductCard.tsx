@@ -20,6 +20,10 @@ const useStyles = createUseStyles({
     },
     productCardTitle: {
         marginBottom: 20,
+    },
+    img: {
+        width: 200,
+        height: 250,
     }
 })
 
@@ -30,7 +34,7 @@ const ProductCard = () => {
     return (
         <article className={classes.productCard}>
             <h2 className={classes.productCardTitle}>Product name</h2>
-            <img src="https://placekitten.com/200/250" alt="Изображение товара"/>
+            <img className={classes.img} src="https://placekitten.com/200/250" alt="Изображение товара"/>
             <p>Product description</p>
             <div className={classes.productCardInner}>
                 <span>Price</span>
@@ -42,19 +46,6 @@ const ProductCard = () => {
 
 export default ProductCard;
 
-
-// const ProductItem = {
-//     id: 1,
-//     productName: 'Product',
-//     productImgUrl: '/#',
-//     productDescription: 'Description',
-//     productPrice: {
-//         RUB: 10,
-//         USD: 60,
-//         //использовать функцию конвертации при выводе на клиенте вместо хардкодинга цены в разных валютах
-//     },
-//     productQuantity: 0
-// }
 
 
 

@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import {createUseStyles} from "react-jss";
 
 const useStyles = createUseStyles({
-    productListInner: {
+    productList: {
         display: "grid",
         gridTemplateColumns: [
             ["1fr", "1fr", "1fr", "1fr", "1fr",]
@@ -12,14 +12,21 @@ const useStyles = createUseStyles({
         maxWidth: 1280,
         marginRight: "auto",
         marginLeft: "auto",
+        marginBottom: 20
     }
 })
 
 const ProductList = () => {
 
     const classes = useStyles()
+
     return (
-        <section className={classes.productListInner}>
+        <section className={classes.productList}>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
             <ProductCard/>
             <ProductCard/>
             <ProductCard/>
