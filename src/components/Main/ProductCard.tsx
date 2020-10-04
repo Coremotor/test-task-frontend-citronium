@@ -1,5 +1,10 @@
-import React from "react";
-import {createUseStyles} from "react-jss";
+import React from "react"
+import {createUseStyles} from "react-jss"
+import {IProduct} from "../../interfaces/interfaces"
+import {useDispatch, useSelector} from "react-redux"
+import {IStore} from '../../interfaces/interfaces'
+import {currencyConvert, currencyCourseRUBUSD} from "../libs/currencyConvert"
+import {onAddInBasketBtnClick} from "../../store/actionCreators/actionCreators";
 
 const useStyles = createUseStyles({
     productCard: {
@@ -24,21 +29,43 @@ const useStyles = createUseStyles({
     img: {
         width: 200,
         height: 250,
+    },
+    productCardPriceCurrency: {
+        marginLeft: 10
     }
 })
 
-const ProductCard = () => {
+const ProductCard = (props: IProduct) => {
+    const lang = useSelector((state: IStore) => state.lang)
+    const dispatch = useDispatch()
 
     const classes = useStyles()
 
     return (
         <article className={classes.productCard}>
-            <h2 className={classes.productCardTitle}>Product name</h2>
-            <img className={classes.img} src="https://placekitten.com/200/250" alt="Изображение товара"/>
-            <p>Product description</p>
+            <h2 className={classes.productCardTitle}>
+                {
+                    lang === 'en' ? props.productNameEN : props.productNameRU
+                }
+            </h2>
+            <img className={classes.img} src={props.productImgUrl} alt="Изображение товара"/>
+            <p>
+                {
+                    lang === 'en' ? props.productDescriptionEN : props.productDescriptionRU
+                }
+            </p>
             <div className={classes.productCardInner}>
-                <span>Price</span>
-                <button>Add</button>
+                <span>
+                    {
+                        lang === 'en' ? props.productPriceUSD : currencyConvert(props.productPriceUSD, currencyCourseRUBUSD)
+                    }
+                    <span className={classes.productCardPriceCurrency}>
+                        {
+                            lang === 'en' ? "USD" : "RUB"
+                        }
+                    </span>
+                </span>
+                <button onClick={() => dispatch(onAddInBasketBtnClick(props))}>Add</button>
             </div>
         </article>
     )

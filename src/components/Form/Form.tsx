@@ -1,5 +1,8 @@
 import React from "react";
 import {createUseStyles} from "react-jss";
+import {useHistory} from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import {onSubmitForm} from "../../store/actionCreators/actionCreators";
 
 const useStyles = createUseStyles({
     formWrapper: {
@@ -42,11 +45,19 @@ const useStyles = createUseStyles({
 
 const Form = () => {
 
+    const dispatch = useDispatch()
+
     const classes = useStyles();
+    const history = useHistory()
+    const submitHandler = (event: any) => {
+        event.preventDefault()
+        dispatch(onSubmitForm([]))
+        history.push('/')
+    }
 
     return (
         <div className={classes.formWrapper}>
-            <form className={classes.form}>
+            <form onSubmit={submitHandler} className={classes.form}>
                 <label className={classes.fieldLabel} htmlFor="fio">Фамилия Имя Отчество</label>
                 <input className={classes.fioField} id="fio" name="fio" type="text" placeholder="Фамилия Имя Отчество"/>
 

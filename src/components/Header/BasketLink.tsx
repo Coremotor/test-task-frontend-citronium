@@ -1,5 +1,8 @@
 import React from "react";
 import {createUseStyles} from "react-jss";
+import {useSelector} from "react-redux";
+import {IStore} from "../../interfaces/interfaces";
+import {NavLink} from "react-router-dom";
 
 const useStyles = createUseStyles({
     basketLinkWrapper: {
@@ -17,14 +20,16 @@ const useStyles = createUseStyles({
 const BasketLink = () => {
 
     const classes = useStyles()
+    const basket = useSelector((state: IStore)=>state.basket)
+    console.log(basket)
 
     return (
         <div className={classes.basketLinkWrapper}>
-            <a className={classes.link} href="#">
+            <NavLink className={classes.link} to="/basket">
                 <img src="./img/basketIcon.svg" alt="Go to bucket"/>
-            </a>
+            </NavLink>
 
-            <span>5</span>
+            <span>{basket.length}</span>
         </div>
     )
 }

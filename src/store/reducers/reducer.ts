@@ -1,25 +1,28 @@
-import initialState from '../initialState';
-import {ON_COURSE_TITLE_CLICK_HANDLER, ON_MODULE_TITLE_CLICK_HANDLER} from "../actionTypes/actionTypes";
+import initialState from '../initialState'
+import {ON_ADD_IN_BASKET_BTN_CLICK, ON_LANG_BTN_CLICK, ON_SUBMIT_FORM} from "../actionTypes/actionTypes"
 
-function reducer(state = initialState, action: any) {
+function reducer(state = initialState, action: any): any {
 
     switch (action.type) {
-        case ON_COURSE_TITLE_CLICK_HANDLER:
-
+        case ON_ADD_IN_BASKET_BTN_CLICK:
+            console.log(action.props)
             return {
-                state
+                ...state, basket: [...state.basket, action.props]
             };
-
-        case ON_MODULE_TITLE_CLICK_HANDLER:
-
+        case ON_LANG_BTN_CLICK:
+            console.log(action.lang)
             return {
-
-
-                state
+                ...state, lang: action.lang
             };
-
+        case ON_SUBMIT_FORM:
+            console.log(action.emptyArr)
+            return {
+                ...state, basket: action.emptyArr
+            };
         default:
-            return state;
+            return {
+                ...state
+            }
     }
 }
 

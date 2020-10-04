@@ -1,5 +1,9 @@
 import React from "react";
 import {createUseStyles} from "react-jss";
+import {NavLink} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {IStore, IProduct} from '../../interfaces/interfaces';
+import {currencyConvert, currencyCourseRUBUSD} from "../libs/currencyConvert";
 
 const useStyles = createUseStyles({
     basket: {
@@ -45,8 +49,8 @@ const useStyles = createUseStyles({
         marginRight: 10,
     },
     wrapper: {
-        width:"80%",
-        display:"flex",
+        width: "80%",
+        display: "flex",
         alignItems: "center",
         justifyContent: "space-around",
         alignSelf: "center",
@@ -60,56 +64,38 @@ const useStyles = createUseStyles({
 const Basket = () => {
 
     const classes = useStyles()
+    const lang = useSelector((state: IStore) => state.lang)
+    const basket = useSelector((state: IStore) => state.basket)
 
     return (
         <section className={classes.basket}>
             <h2>Basket</h2>
             <ul className={classes.list}>
-                <li className={classes.item}>
-                    <span className={classes.number}>1.</span>
-                    <span className={classes.name}>Product name</span>
-                    <span className={classes.description}>Product description</span>
-                    <span className={classes.price}>Product price</span>
+                {
+                    basket.map((productInBasket: IProduct, index) => {
+                        return (
+                            <li key={productInBasket.id} className={classes.item}>
+                                <span className={classes.number}>{index + 1 + '.'}</span>
+                                <span className={classes.name}>{lang === 'en' ? productInBasket.productNameEN : productInBasket.productNameRU}</span>
+                                <span className={classes.description}>{lang === 'en' ? productInBasket.productDescriptionEN : productInBasket.productDescriptionRU}</span>
+                                <span className={classes.price}>{lang === 'en' ? productInBasket.productPriceUSD : currencyConvert(productInBasket.productPriceUSD, currencyCourseRUBUSD)}</span>
 
-                    <button className={classes.delBtn}>Del</button>
-                    <span className={classes.productCount}>Product count</span>
-                    <button className={classes.addBtn}>Add</button>
+                                <button className={classes.delBtn}>Del</button>
+                                <span className={classes.productCount}>{productInBasket.productQuantity}</span>
+                                <button className={classes.addBtn}>Add</button>
 
-                    <span className={classes.summaryPrice}>Summary price</span>
-                </li>
-
-                <li className={classes.item}>
-                    <span className={classes.number}>1.</span>
-                    <span className={classes.name}>Product name</span>
-                    <span className={classes.description}>Product description</span>
-                    <span className={classes.price}>Product price</span>
-
-                    <button className={classes.delBtn}>Del</button>
-                    <span className={classes.productCount}>Product count</span>
-                    <button className={classes.addBtn}>Add</button>
-
-                    <span className={classes.summaryPrice}>Summary price</span>
-                </li>
-
-                <li className={classes.item}>
-                    <span className={classes.number}>1.</span>
-                    <span className={classes.name}>Product name</span>
-                    <span className={classes.description}>Product description</span>
-                    <span className={classes.price}>Product price</span>
-
-                    <button className={classes.delBtn}>Del</button>
-                    <span className={classes.productCount}>Product count</span>
-                    <button className={classes.addBtn}>Add</button>
-
-                    <span className={classes.summaryPrice}>Summary price</span>
-                </li>
+                                <span className={classes.summaryPrice}>{lang === 'en' ? productInBasket.productPriceUSD * productInBasket.productQuantity : currencyConvert(productInBasket.productPriceUSD, currencyCourseRUBUSD) * productInBasket.productQuantity}</span>
+                            </li>
+                        )
+                    })
+                }
             </ul>
             <div className={classes.wrapper}>
                 <span>All product count</span>
                 <span>All summary price</span>
             </div>
 
-            <a className={classes.link} href="#">Make an order</a>
+            <NavLink className={classes.link} to="/form">Make an order</NavLink>
         </section>
     )
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import {createUseStyles} from "react-jss";
+import {shallowEqual, useSelector} from "react-redux";
+import {IStore} from '../../interfaces/interfaces';
 
 const useStyles = createUseStyles({
     productList: {
@@ -18,25 +20,20 @@ const useStyles = createUseStyles({
 
 const ProductList = () => {
 
+    const products = useSelector((state: IStore) => state.products, shallowEqual)
+
     const classes = useStyles()
 
     return (
         <section className={classes.productList}>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
+            {
+                products.map((product) => {
+                    return <ProductCard
+                        key={product.id}
+                        {...product}
+                    />
+                })
+            }
         </section>
     )
 }
