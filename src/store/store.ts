@@ -1,6 +1,6 @@
-import { createStore } from "redux";
+import {createStore} from "redux";
 import reducer from './reducers/reducer';
-import { devToolsEnhancer } from 'redux-devtools-extension';
+import {devToolsEnhancer} from 'redux-devtools-extension';
 
 
 const store = createStore(reducer, devToolsEnhancer({}));

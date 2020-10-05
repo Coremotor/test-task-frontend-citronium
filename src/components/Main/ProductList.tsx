@@ -21,7 +21,6 @@ const useStyles = createUseStyles({
 const ProductList = () => {
 
     const products = useSelector((state: IStore) => state.products, shallowEqual)
-
     const classes = useStyles()
 
     return (

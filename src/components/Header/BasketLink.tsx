@@ -3,6 +3,7 @@ import {createUseStyles} from "react-jss";
 import {useSelector} from "react-redux";
 import {IStore} from "../../interfaces/interfaces";
 import {NavLink} from "react-router-dom";
+import {reduceProductInBasketQuantity} from "../../libs/reduceProductInBasketProps";
 
 const useStyles = createUseStyles({
     basketLinkWrapper: {
@@ -11,8 +12,8 @@ const useStyles = createUseStyles({
         justifyContent: "space-between",
     },
     link: {
-        width: 48,
-        height: 48,
+        width: 24,
+        height: 24,
         marginRight: 20,
     }
 })
@@ -20,11 +21,9 @@ const useStyles = createUseStyles({
 const BasketLink = () => {
 
     const classes = useStyles()
-    const basket = useSelector((state: IStore)=>state.basket)
+    const basket = useSelector((state: IStore) => state.basket)
 
-    let inBasketCountProducts = basket.reduce( (accumulator, currentValue) => {
-        return accumulator + currentValue.productQuantity
-    }, 0)
+    const productsInBasketQuantity = reduceProductInBasketQuantity(basket)
 
     return (
         <div className={classes.basketLinkWrapper}>
@@ -32,11 +31,14 @@ const BasketLink = () => {
                 <img src="./img/basketIcon.svg" alt="Go to bucket"/>
             </NavLink>
 
-            <span>
+            {
+                productsInBasketQuantity !== 0 &&
+                <span>
                 {
-                    inBasketCountProducts > 9 ? '9+' : inBasketCountProducts
+                    productsInBasketQuantity > 9 ? '9+' : productsInBasketQuantity
                 }
-            </span>
+                </span>
+            }
         </div>
     )
 }

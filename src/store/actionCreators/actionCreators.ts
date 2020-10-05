@@ -27,7 +27,7 @@ export function onSubmitForm(emptyArr: []) {
     }
 }
 
-export function onUpDownCountProductBtn(productInBasketId: number, count: number) {
+export function onUpDownCountProductBtn(productInBasketId: string, count: number) {
     return {
         type: ON_UP_DOWN_COUNT_PRODUCT_BTN,
         productInBasketId,
@@ -35,7 +35,7 @@ export function onUpDownCountProductBtn(productInBasketId: number, count: number
     }
 }
 
-export function onProductCountZero(productInBasketId: number) {
+export function onProductCountZero(productInBasketId: string) {
     return {
         type: ON_PRODUCT_COUNT_ZERO,
         productInBasketId,

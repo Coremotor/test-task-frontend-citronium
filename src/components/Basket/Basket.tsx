@@ -3,8 +3,9 @@ import {createUseStyles} from "react-jss";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {IStore, IProduct} from '../../interfaces/interfaces';
-import {currencyConvert, currencyCourseRUBUSD} from "../libs/currencyConvert";
+import {currencyConvert, currencyCourseRUBUSD} from "../../libs/currencyConvert";
 import {onProductCountZero, onUpDownCountProductBtn} from "../../store/actionCreators/actionCreators";
+import {reduceProductInBasketPrice, reduceProductInBasketQuantity} from "../../libs/reduceProductInBasketProps";
 
 const useStyles = createUseStyles({
     basket: {
@@ -29,6 +30,7 @@ const useStyles = createUseStyles({
     },
     list: {
         listStyle: "none",
+        borderBottom: ['1px', 'solid', 'gray'],
         marginBottom: 40,
     },
     item: {
@@ -66,9 +68,31 @@ const useStyles = createUseStyles({
         justifyContent: "space-around",
         alignSelf: "center",
     },
+    basketAllProductCount: {
+        marginLeft: 10,
+    },
+    basketAllProductPrice: {
+        marginLeft: 10,
+    },
     link: {
+        display: "block",
         alignSelf: "center",
+        backgroundColor: "gray",
+        textDecoration: "none",
+        color: "white",
+        padding: {
+            top: 10,
+            right: 20,
+            bottom: 10,
+            left: 20
+        },
+        marginTop: 40,
         marginBottom: 40,
+        '&:hover': {
+            boxShadow: [
+                [0, 0, 6, 2, 'gray'],
+            ],
+        },
     }
 })
 
@@ -84,10 +108,6 @@ const Basket = () => {
             dispatch(onProductCountZero(productInBasket.id))
         }
     })
-
-    let inBasketCountProducts = basket.reduce( (accumulator, currentValue) => {
-        return accumulator + currentValue.productQuantity
-    }, 0)
 
     return (
         <section className={classes.basket}>
@@ -167,23 +187,34 @@ const Basket = () => {
                 basket.length !== 0 &&
                 <div className={classes.wrapper}>
                     <span>All product count:
-                        {
-                            inBasketCountProducts
-                        }
+                        <span className={classes.basketAllProductCount}>
+                            {
+                                reduceProductInBasketQuantity(basket)
+                            }
+                        </span>
                     </span>
-                    <span>All summary price
-                    <span className={classes.basketCurrency}>
-                        {
-                            lang === 'en' ? "USD" : "RUB"
-                        }
+                    <span>All summary price:
+                            <span className={classes.basketAllProductPrice}>
+                                {
+                                    lang === 'en'
+                                        ? reduceProductInBasketPrice(basket)
+                                        : Number(currencyConvert(reduceProductInBasketPrice(basket), currencyCourseRUBUSD)).toFixed(2)
+                                }
+                            </span>
+                        <span className={classes.basketCurrency}>
+                            {
+                                lang === 'en' ? "USD" : "RUB"
+                            }
+                        </span>
                     </span>
-                </span>
                 </div>
             }
 
             {
                 basket.length !== 0 && <NavLink className={classes.link} to="/form">Make an order</NavLink>
             }
+
+            <NavLink className={classes.link} to='/'>Go to main page</NavLink>
         </section>
     )
 }

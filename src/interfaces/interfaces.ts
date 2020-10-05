@@ -1,11 +1,11 @@
 export interface IStore {
     lang: string,
     products: IProduct[],
-    basket: IProduct[ ]
+    basket: IProduct[]
 }
 
 export interface IProduct {
-    id: number,
+    id: string,
     productNameRU: string,
     productNameEN: string,
     productImgUrl: string,

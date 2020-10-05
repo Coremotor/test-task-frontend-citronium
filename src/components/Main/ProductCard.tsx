@@ -3,7 +3,7 @@ import {createUseStyles} from "react-jss"
 import {IProduct} from "../../interfaces/interfaces"
 import {useDispatch, useSelector} from "react-redux"
 import {IStore} from '../../interfaces/interfaces'
-import {currencyConvert, currencyCourseRUBUSD} from "../libs/currencyConvert"
+import {currencyConvert, currencyCourseRUBUSD} from "../../libs/currencyConvert"
 import {onAddInBasketBtnClick} from "../../store/actionCreators/actionCreators"
 
 const useStyles = createUseStyles({
@@ -16,6 +16,18 @@ const useStyles = createUseStyles({
         ],
         padding: 10,
         backgroundColor: "white",
+    },
+    productCardAdded: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        border: [
+            [1, 'solid', 'blue']
+        ],
+        padding: 10,
+        backgroundColor: "white",
+        opacity: 0.8
+
     },
     productCardInner: {
         display: "flex",
@@ -44,7 +56,7 @@ const ProductCard = (props: IProduct) => {
     const indexProductInBasket = basket.findIndex((item) => item.id === props.id)
 
     return (
-        <article className={classes.productCard}>
+        <article className={(indexProductInBasket === -1 ? false : basket[indexProductInBasket].inBasket) ? classes.productCardAdded : classes.productCard}>
             <h2 className={classes.productCardTitle}>
                 {
                     lang === 'en'
