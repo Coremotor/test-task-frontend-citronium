@@ -21,7 +21,10 @@ const BasketLink = () => {
 
     const classes = useStyles()
     const basket = useSelector((state: IStore)=>state.basket)
-    console.log(basket)
+
+    let inBasketCountProducts = basket.reduce( (accumulator, currentValue) => {
+        return accumulator + currentValue.productQuantity
+    }, 0)
 
     return (
         <div className={classes.basketLinkWrapper}>
@@ -29,7 +32,11 @@ const BasketLink = () => {
                 <img src="./img/basketIcon.svg" alt="Go to bucket"/>
             </NavLink>
 
-            <span>{basket.length}</span>
+            <span>
+                {
+                    inBasketCountProducts > 9 ? '9+' : inBasketCountProducts
+                }
+            </span>
         </div>
     )
 }

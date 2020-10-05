@@ -1,5 +1,10 @@
 import initialState from '../initialState'
-import {ON_ADD_IN_BASKET_BTN_CLICK, ON_LANG_BTN_CLICK, ON_SUBMIT_FORM} from "../actionTypes/actionTypes"
+import {
+    ON_ADD_IN_BASKET_BTN_CLICK,
+    ON_LANG_BTN_CLICK, ON_PRODUCT_COUNT_ZERO,
+    ON_SUBMIT_FORM,
+    ON_UP_DOWN_COUNT_PRODUCT_BTN
+} from "../actionTypes/actionTypes"
 
 function reducer(state = initialState, action: any): any {
 
@@ -18,6 +23,23 @@ function reducer(state = initialState, action: any): any {
             console.log(action.emptyArr)
             return {
                 ...state, basket: action.emptyArr
+            };
+        case ON_UP_DOWN_COUNT_PRODUCT_BTN:
+            console.log(action)
+            return {
+                ...state, basket: [...state.basket].map((item) => {
+                    if (item.id === action.productInBasketId) {
+                        item.productQuantity += action.count
+                        return item
+                    } else {
+                        return item
+                    }
+                })
+            };
+        case ON_PRODUCT_COUNT_ZERO:
+            console.log(action)
+            return {
+                ...state, basket: [...state.basket].filter((item) => item.id !== action.productInBasketId)
             };
         default:
             return {

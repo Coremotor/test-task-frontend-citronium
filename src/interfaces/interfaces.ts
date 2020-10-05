@@ -5,12 +5,13 @@ export interface IStore {
 }
 
 export interface IProduct {
-    id: any,
+    id: number,
     productNameRU: string,
     productNameEN: string,
     productImgUrl: string,
     productDescriptionRU: string,
     productDescriptionEN: string,
     productPriceUSD: number,
-    productQuantity: number
+    productQuantity: number,
+    inBasket: boolean
 }

@@ -6,7 +6,7 @@ import {onSubmitForm} from "../../store/actionCreators/actionCreators";
 
 const useStyles = createUseStyles({
     formWrapper: {
-        height: "100%",
+        height: "1000vh",
         marginTop: 50,
         marginBottom: 50,
         marginRight: "auto",
