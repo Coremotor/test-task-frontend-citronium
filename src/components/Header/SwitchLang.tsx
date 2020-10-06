@@ -8,10 +8,18 @@ const useStyles = createUseStyles({
     switchLangWrapper: {
         marginRight: 80,
     },
+    btn: {
+        '&:first-child': {
+            marginRight: 10
+        }
+    },
     btnActive: {
-        border: [
-            ['1px', 'solid', 'red']
-        ]
+        boxShadow: [
+            [0, 0, 6, 2, 'darkgray']
+        ],
+        '&:first-child': {
+            marginRight: 10
+        }
     }
 })
 
@@ -24,8 +32,17 @@ const SwitchLang = () => {
 
     return (
         <div className={classes.switchLangWrapper}>
-            <button className={lang === 'ru' ? classes.btnActive : undefined} onClick={() => dispatch(onLangBtnClick('ru'))}>ru</button>
-            <button className={lang === 'en' ? classes.btnActive : undefined} onClick={() => dispatch(onLangBtnClick('en'))}>en</button>
+            <button
+                className={lang === 'ru' ? classes.btnActive : classes.btn}
+                onClick={() => dispatch(onLangBtnClick('ru'))}
+            >рус
+            </button>
+
+            <button
+                className={lang === 'en' ? classes.btnActive : classes.btn}
+                onClick={() => dispatch(onLangBtnClick('en'))}
+            >en
+            </button>
         </div>
     )
 }

@@ -6,6 +6,7 @@ import {IStore, IProduct} from '../../interfaces/interfaces';
 import {currencyConvert, currencyCourseRUBEURO} from "../../libs/currencyConvert";
 import {onProductCountZero, onUpDownCountProductBtn} from "../../store/actionCreators/actionCreators";
 import {reduceProductInBasketPrice, reduceProductInBasketQuantity} from "../../libs/reduceProductInBasketProps";
+import {FormattedMessage} from "react-intl";
 
 const useStyles = createUseStyles({
     basket: {
@@ -112,6 +113,8 @@ const Basket = () => {
     const lang = useSelector((state: IStore) => state.lang)
     const basket = useSelector((state: IStore) => state.basket)
 
+
+    //TODO: варнинг в консоли - разобраться
     basket.forEach((productInBasket) => {
         if (productInBasket.productQuantity === 0) {
             dispatch(onProductCountZero(productInBasket.id))
@@ -120,15 +123,18 @@ const Basket = () => {
 
     return (
         <section className={classes.basket}>
-            <h2 className={classes.basketTitle}>Basket</h2>
+            <h2 className={classes.basketTitle}>
+                <FormattedMessage
+                    id='shoppingCart'
+                    defaultMessage='Shopping Cart'
+                />
+            </h2>
             {
                 basket.length === 0 && <span className={classes.basketEmpty}>Basket is empty</span>
             }
             <ul className={classes.list}>
                 {
                     basket.map((productInBasket: IProduct, index) => {
-
-                        // if (productInBasket.productQuantity === 0) dispatch(onProductCountZero(productInBasket.id))
 
                         return (
                             <li key={productInBasket.id} className={classes.item}>
@@ -164,13 +170,22 @@ const Basket = () => {
                                         onClick={
                                             () => dispatch(onUpDownCountProductBtn(productInBasket.id, -1))
                                         }
-                                >Del
+                                >
+                                    <FormattedMessage
+                                        id='del'
+                                        defaultMessage='Delete'
+                                    />
                                 </button>
                                 <span className={classes.productCount}>{productInBasket.productQuantity}</span>
                                 <button className={classes.addBtn}
                                         onClick={
                                             () => dispatch(onUpDownCountProductBtn(productInBasket.id, 1))
-                                        }>Add
+                                        }
+                                >
+                                    <FormattedMessage
+                                        id='add'
+                                        defaultMessage='Add'
+                                    />
                                 </button>
 
                                 <span
@@ -195,14 +210,22 @@ const Basket = () => {
             {
                 basket.length !== 0 &&
                 <div className={classes.wrapper}>
-                    <span>All product count:
+                    <span>
+                        <FormattedMessage
+                            id='allProductCount'
+                            defaultMessage='All product count:'
+                        />
                         <span className={classes.basketAllProductCount}>
                             {
                                 reduceProductInBasketQuantity(basket)
                             }
                         </span>
                     </span>
-                    <span>All summary price:
+                    <span>
+                        <FormattedMessage
+                            id='allSummaryPrice'
+                            defaultMessage='All summary price:'
+                        />
                             <span className={classes.basketAllProductPrice}>
                                 {
                                     lang === 'en'
@@ -220,10 +243,21 @@ const Basket = () => {
             }
 
             {
-                basket.length !== 0 && <NavLink className={classes.link} to="/form">Make an order</NavLink>
+                basket.length !== 0 &&
+                <NavLink className={classes.link} to="/form">
+                    <FormattedMessage
+                        id='makeAnOrder'
+                        defaultMessage='Make an order'
+                    />
+                </NavLink>
             }
 
-            <NavLink className={classes.link} to='/'>Go to main page</NavLink>
+            <NavLink className={classes.link} to='/'>
+                <FormattedMessage
+                    id='toMainPage'
+                    defaultMessage='Go to main page'
+                />
+            </NavLink>
         </section>
     )
 }

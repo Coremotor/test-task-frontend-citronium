@@ -4,6 +4,8 @@ import Basket from "./BasketLink";
 import {createUseStyles} from 'react-jss'
 import {NavLink} from "react-router-dom";
 
+import {FormattedMessage} from 'react-intl'
+
 const useStyles = createUseStyles({
     header: {
         color: 'white',
@@ -59,7 +61,14 @@ const Header = () => {
     return (
         <header className={classes.header}>
             <div className={classes.headerInner}>
-                <NavLink to='/' className={classes.headerTitleLink}><h1>Market</h1></NavLink>
+                <NavLink to='/' className={classes.headerTitleLink}>
+                    <h1>
+                        <FormattedMessage
+                            id='marketName'
+                            defaultMessage='Market'
+                        />
+                    </h1>
+                </NavLink>
                 <SwitchLang/>
                 <Basket/>
             </div>

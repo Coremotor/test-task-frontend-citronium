@@ -4,6 +4,8 @@ import {createUseStyles} from "react-jss";
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {onSubmitForm} from "../../store/actionCreators/actionCreators";
+import {FormattedMessage} from "react-intl";
+import {useIntl} from 'react-intl';
 
 const useStyles = createUseStyles({
     formWrapper: {
@@ -76,6 +78,7 @@ const Form = () => {
     const classes = useStyles()
     const history = useHistory()
     const dispatch = useDispatch()
+    const intl = useIntl()
 
     const formik = useFormik({
         initialValues: {
@@ -90,6 +93,8 @@ const Form = () => {
             history.push('/')
         },
     });
+
+
     return (
         <div className={classes.formWrapper}>
             <form onSubmit={formik.handleSubmit} className={classes.form}>
@@ -102,7 +107,7 @@ const Form = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.fio}
-                    placeholder='Enter first and last name'
+                    placeholder={intl.formatMessage({id: 'nameSurnamePlaceholder'})}
                 />
                 {formik.touched.fio && formik.errors.fio ? (
                     <div className={classes.error}>{formik.errors.fio}</div>
@@ -117,7 +122,7 @@ const Form = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.email}
-                    placeholder='Enter email'
+                    placeholder={intl.formatMessage({id: 'emailPlaceholder'})}
                 />
                 {formik.touched.email && formik.errors.email ? (
                     <div className={classes.error}>{formik.errors.email}</div>
@@ -132,7 +137,7 @@ const Form = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.phoneNumber}
-                    placeholder='Enter phone number'
+                    placeholder={intl.formatMessage({id: 'phoneNumberPlaceholder'})}
                 />
                 {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
                     <div className={classes.error}>{formik.errors.phoneNumber}</div>
@@ -142,7 +147,11 @@ const Form = () => {
                     className={classes.formBtn}
                     type="submit"
                     disabled={!(formik.isValid && formik.dirty)}
-                >Make an order
+                >
+                    <FormattedMessage
+                        id='makeAnOrder'
+                        defaultMessage='Make an order'
+                    />
                 </button>
             </form>
         </div>

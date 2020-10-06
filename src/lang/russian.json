@@ -1,0 +1,14 @@
+{
+  "marketName": "Магазин",
+  "addInBasket": "Добавить в корзину",
+  "shoppingCart": "Корзина",
+  "add": "Добавить",
+  "del": "Удалить",
+  "allProductCount": "Общее количество товаров:",
+  "allSummaryPrice": "Общая сумма:",
+  "makeAnOrder": "Сделать заказ",
+  "toMainPage": "Вернуться на главную страницу",
+  "nameSurnamePlaceholder": "Введите имя и фамилию",
+  "emailPlaceholder": "Введите адрес электронной почты",
+  "phoneNumberPlaceholder": "Введите номер телефона"
+}

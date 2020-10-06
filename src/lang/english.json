@@ -1,0 +1,14 @@
+{
+  "marketName": "Market",
+  "addInBasket": "Add to Shopping Cart",
+  "shoppingCart": "Shopping Cart",
+  "add": "Add",
+  "del": "Delete",
+  "allProductCount": "All product count:",
+  "allSummaryPrice": "All summary price:",
+  "makeAnOrder": "Make an order",
+  "toMainPage": "Go to main page",
+  "nameSurnamePlaceholder": "Enter first and last name",
+  "emailPlaceholder": "Enter email",
+  "phoneNumberPlaceholder": "Enter phone number"
+}
