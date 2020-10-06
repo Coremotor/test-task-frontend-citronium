@@ -10,8 +10,32 @@ const useStyles = createUseStyles({
         gridTemplateColumns: [
             ["1fr", "1fr", "1fr", "1fr", "1fr",]
         ],
+        '@media (max-width: 1300px)': {
+            gridTemplateColumns: [
+                ["1fr", "1fr", "1fr", "1fr"]
+            ]
+        },
+        '@media (max-width: 1100px)': {
+            gridTemplateColumns: [
+                ["1fr", "1fr", "1fr"]
+            ]
+        },
+        '@media (max-width: 850px)': {
+            gridTemplateColumns: [
+                ["1fr", "1fr"]
+            ]
+        },
+        '@media (max-width: 560px)': {
+            gridTemplateColumns: [
+                ["1fr"]
+            ]
+        },
         gridGap: 10,
         maxWidth: 1280,
+        padding: {
+            right: 10,
+            left: 10
+        },
         marginRight: "auto",
         marginLeft: "auto",
         marginBottom: 20

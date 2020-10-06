@@ -12,7 +12,7 @@ export function genericProductArray (productQuantity: number): IProduct[] {
                 productImgUrl: faker.random.image(),
                 productDescriptionRU: `Описание товара № ${i}`,
                 productDescriptionEN: `Product description № ${i}`,
-                productPriceUSD: faker.random.number(100),
+                productPriceEURO: faker.random.number(100),
                 productQuantity: 1,
                 inBasket: true
             },

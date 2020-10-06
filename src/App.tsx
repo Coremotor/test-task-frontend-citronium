@@ -7,19 +7,16 @@ import {Switch, Route, BrowserRouter} from 'react-router-dom'
 import Basket from "./components/Basket/Basket";
 import Form from "./components/Form/Form";
 
+
 function App() {
     return (
         <div className="App">
             <BrowserRouter>
                 <Header/>
                 <Switch>
-
                     <Route component={Main} path='/' exact/>
                     <Route component={Basket} path='/basket'/>
                     <Route component={Form} path='/form'/>
-                    {/*<Basket/>*/}
-                    {/*<Form/>*/}
-
                 </Switch>
                 <Footer/>
             </BrowserRouter>

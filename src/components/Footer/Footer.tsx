@@ -11,8 +11,12 @@ const useStyles = createUseStyles({
         fontWeight: 700,
         fontSize: 16,
         textAlign: "center",
-        paddingTop: 50,
-        paddingBottom: 50,
+        padding: {
+            top: 30,
+            right: 10,
+            bottom: 30,
+            left: 10
+        },
         marginRight: "auto",
         marginLeft: "auto",
     }

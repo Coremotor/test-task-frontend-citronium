@@ -11,7 +11,7 @@ export interface IProduct {
     productImgUrl: string,
     productDescriptionRU: string,
     productDescriptionEN: string,
-    productPriceUSD: number,
+    productPriceEURO: number,
     productQuantity: number,
     inBasket: boolean
 }

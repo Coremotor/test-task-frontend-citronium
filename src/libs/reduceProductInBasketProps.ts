@@ -8,6 +8,6 @@ export function reduceProductInBasketQuantity(array: Array<IProduct>): number {
 
 export function reduceProductInBasketPrice(array: Array<IProduct>): number {
     return array.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.productPriceUSD * currentValue.productQuantity
+        return accumulator + currentValue.productPriceEURO * currentValue.productQuantity
     }, 0)
 }

@@ -3,20 +3,29 @@ import {createUseStyles} from "react-jss";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {IStore, IProduct} from '../../interfaces/interfaces';
-import {currencyConvert, currencyCourseRUBUSD} from "../../libs/currencyConvert";
+import {currencyConvert, currencyCourseRUBEURO} from "../../libs/currencyConvert";
 import {onProductCountZero, onUpDownCountProductBtn} from "../../store/actionCreators/actionCreators";
 import {reduceProductInBasketPrice, reduceProductInBasketQuantity} from "../../libs/reduceProductInBasketProps";
 
 const useStyles = createUseStyles({
     basket: {
         maxWidth: 1280,
-        width: "100%",
+        width: "95%",
         height: "1000vh",
         display: "flex",
         flexDirection: "column",
+        padding: {
+            right: 10,
+            left: 10
+        },
         marginRight: "auto",
         marginLeft: "auto",
         marginBottom: 30,
+    },
+    '@media (max-width: 650px)': {
+        basket: {
+            fontSize: 12
+        }
     },
     basketEmpty: {
         textAlign: "center",
@@ -142,11 +151,11 @@ const Basket = () => {
                                     className={classes.price}>
                                     {
                                         lang === 'en'
-                                            ? productInBasket.productPriceUSD
-                                            : currencyConvert(productInBasket.productPriceUSD, currencyCourseRUBUSD)}
+                                            ? productInBasket.productPriceEURO
+                                            : currencyConvert(productInBasket.productPriceEURO, currencyCourseRUBEURO)}
                                     <span className={classes.basketCurrency}>
                                         {
-                                            lang === 'en' ? "USD" : "RUB"
+                                            lang === 'en' ? "EURO" : "RUB"
                                         }
                                     </span>
                                 </span>
@@ -168,12 +177,12 @@ const Basket = () => {
                                     className={classes.summaryPrice}>
                                     {
                                         lang === 'en'
-                                            ? productInBasket.productPriceUSD * productInBasket.productQuantity
-                                            : Number(currencyConvert(productInBasket.productPriceUSD, currencyCourseRUBUSD) * productInBasket.productQuantity).toFixed(2)
+                                            ? productInBasket.productPriceEURO * productInBasket.productQuantity
+                                            : Number(currencyConvert(productInBasket.productPriceEURO, currencyCourseRUBEURO) * productInBasket.productQuantity).toFixed(2)
                                     }
                                     <span className={classes.basketCurrency}>
                                         {
-                                            lang === 'en' ? "USD" : "RUB"
+                                            lang === 'en' ? "EURO" : "RUB"
                                         }
                                     </span>
                                 </span>
@@ -198,12 +207,12 @@ const Basket = () => {
                                 {
                                     lang === 'en'
                                         ? reduceProductInBasketPrice(basket)
-                                        : Number(currencyConvert(reduceProductInBasketPrice(basket), currencyCourseRUBUSD)).toFixed(2)
+                                        : Number(currencyConvert(reduceProductInBasketPrice(basket), currencyCourseRUBEURO)).toFixed(2)
                                 }
                             </span>
                         <span className={classes.basketCurrency}>
                             {
-                                lang === 'en' ? "USD" : "RUB"
+                                lang === 'en' ? "EURO" : "RUB"
                             }
                         </span>
                     </span>

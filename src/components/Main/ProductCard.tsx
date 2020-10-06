@@ -3,7 +3,7 @@ import {createUseStyles} from "react-jss"
 import {IProduct} from "../../interfaces/interfaces"
 import {useDispatch, useSelector} from "react-redux"
 import {IStore} from '../../interfaces/interfaces'
-import {currencyConvert, currencyCourseRUBUSD} from "../../libs/currencyConvert"
+import {currencyConvert, currencyCourseRUBEURO} from "../../libs/currencyConvert"
 import {onAddInBasketBtnClick} from "../../store/actionCreators/actionCreators"
 
 const useStyles = createUseStyles({
@@ -76,12 +76,12 @@ const ProductCard = (props: IProduct) => {
                 <span>
                     {
                         lang === 'en'
-                            ? props.productPriceUSD
-                            : currencyConvert(props.productPriceUSD, currencyCourseRUBUSD)
+                            ? props.productPriceEURO
+                            : currencyConvert(props.productPriceEURO, currencyCourseRUBEURO)
                     }
                     <span className={classes.productCardPriceCurrency}>
                         {
-                            lang === 'en' ? "USD" : "RUB"
+                            lang === 'en' ? "EURO" : "RUB"
                         }
                     </span>
                 </span>

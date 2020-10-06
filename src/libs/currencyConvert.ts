@@ -1,5 +1,5 @@
-export const currencyCourseRUBUSD = 78.19
+export const currencyCourseRUBEURO = 92
 
-export const currencyConvert = (priceUSD: number, currencyCourse: number): number => {
-    return Number((priceUSD * currencyCourse).toFixed(2))
+export const currencyConvert = (priceEURO: number, currencyCourse: number): number => {
+    return Number((priceEURO * currencyCourse).toFixed(2))
 }

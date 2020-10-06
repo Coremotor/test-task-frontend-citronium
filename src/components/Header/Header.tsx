@@ -2,6 +2,7 @@ import React from "react";
 import SwitchLang from "./SwitchLang";
 import Basket from "./BasketLink";
 import {createUseStyles} from 'react-jss'
+import {NavLink} from "react-router-dom";
 
 const useStyles = createUseStyles({
     header: {
@@ -14,6 +15,10 @@ const useStyles = createUseStyles({
         display: "flex",
         alignItems: "center",
         maxWidth: 1280,
+        padding: {
+            right: 10,
+            left: 10
+        },
         margin: {
             top: 0,
             right: "auto",
@@ -21,8 +26,13 @@ const useStyles = createUseStyles({
             left: "auto",
         },
     },
-    headerTitle: {
+    headerTitleLink: {
+        textDecoration: "none",
+        color: "white",
         marginRight: "auto",
+        '&:active': {
+            color: "white"
+        }
     },
     myButton: {
         color: 'green',
@@ -49,7 +59,7 @@ const Header = () => {
     return (
         <header className={classes.header}>
             <div className={classes.headerInner}>
-                <h1 className={classes.headerTitle}>Market</h1>
+                <NavLink to='/' className={classes.headerTitleLink}><h1>Market</h1></NavLink>
                 <SwitchLang/>
                 <Basket/>
             </div>

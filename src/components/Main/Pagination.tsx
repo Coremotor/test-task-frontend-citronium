@@ -8,6 +8,10 @@ const useStyles = createUseStyles({
         alignItems: "center",
         justifyContent: "center",
         listStyle: "none",
+        padding: {
+            right: 10,
+            left: 10
+        },
         margin: {
             top: 0,
             right: "auto",
