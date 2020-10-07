@@ -12,9 +12,6 @@ import English from './lang/english.json'
 import {useSelector} from "react-redux";
 import {IStore} from "./interfaces/interfaces";
 
-
-
-
 function App() {
 
     let locale = useSelector((state: IStore) => state.lang)
