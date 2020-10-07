@@ -9,11 +9,8 @@ import Form from "./components/Form/Form"
 import {IntlProvider} from 'react-intl'
 import Russian from './lang/russian.json'
 import English from './lang/english.json'
-import {useSelector} from "react-redux";
-import {IStore} from "./interfaces/interfaces";
-
-
-
+import {useSelector} from "react-redux"
+import {IStore} from "./interfaces/interfaces"
 
 function App() {
 

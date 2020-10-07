@@ -27,7 +27,10 @@ const useStyles = createUseStyles({
     error: {
         backgroundColor: "red",
         color: "white",
-        padding: 10,
+        padding: 5,
+        marginTop: -20,
+        marginBottom: 10,
+        width: 'fit-content'
     },
     fieldLabel: {
         visibility: "hidden",
