@@ -2,7 +2,9 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import {createUseStyles} from "react-jss";
 import {useSelector} from "react-redux";
-import {IStore} from '../../interfaces/interfaces';
+import {IProduct, IStore} from '../../interfaces/interfaces';
+import {buildArrayProductsForShowOnPage} from "../../libs/buildArrayProductsForShowOnPage";
+import {RENDER_PAGE_QUANTITY} from "../globalConstants/globalConstants";
 
 const useStyles = createUseStyles({
     productList: {
@@ -44,8 +46,11 @@ const useStyles = createUseStyles({
 
 const ProductList = () => {
 
-    const currentPageProducts = useSelector((state: IStore) => state.currentPageProducts)
+    const currentPage: number = useSelector((state: IStore) => state.currentPage)
+    const products: IProduct[] = useSelector((state: IStore) => state.products)
     const classes = useStyles()
+
+    const currentPageProducts: IProduct[] = buildArrayProductsForShowOnPage(currentPage, RENDER_PAGE_QUANTITY, products)
 
     return (
         <section className={classes.productList}>

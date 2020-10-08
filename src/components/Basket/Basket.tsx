@@ -4,10 +4,10 @@ import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {IStore, IProduct} from '../../interfaces/interfaces';
 import {currencyConvert} from "../../libs/currencyConvert";
-import {onProductCountZero, onUpDownCountProductBtn} from "../../store/actionCreators/actionCreators";
+import {onProductCountZero, onAddDelCountProductBtn} from "../../store/actionCreators/actionCreators";
 import {reduceProductInBasketPrice, reduceProductInBasketQuantity} from "../../libs/reduceProductInBasketProps";
 import {FormattedMessage} from "react-intl";
-import {CURRENCY_COURSE_RUB_EURO} from "../../constants";
+import {CURRENCY_COURSE_RUB_EURO} from "../globalConstants/globalConstants";
 
 const useStyles = createUseStyles({
     basket: {
@@ -37,6 +37,7 @@ const useStyles = createUseStyles({
         marginLeft: 10
     },
     basketTitle: {
+        color: "#094d74",
         marginTop: 20
     },
     list: {
@@ -88,7 +89,7 @@ const useStyles = createUseStyles({
     link: {
         display: "block",
         alignSelf: "center",
-        backgroundColor: "gray",
+        backgroundColor: "#094d74",
         textDecoration: "none",
         color: "white",
         padding: {
@@ -111,12 +112,11 @@ const Basket = () => {
 
     const classes = useStyles()
     const dispatch = useDispatch();
-    const lang = useSelector((state: IStore) => state.lang)
-    const basket = useSelector((state: IStore) => state.basket)
+    const lang: string = useSelector((state: IStore) => state.lang)
+    const basket: IProduct[] = useSelector((state: IStore) => state.basket)
 
 
     //TODO: варнинг в консоли - разобраться
-    //скорее всего переноситьо в другую компоненту
     basket.forEach((productInBasket) => {
         if (productInBasket.productQuantity === 0) {
             dispatch(onProductCountZero(productInBasket.id))
@@ -170,7 +170,7 @@ const Basket = () => {
 
                                 <button className={classes.delBtn}
                                         onClick={
-                                            () => dispatch(onUpDownCountProductBtn(productInBasket.id, -1))
+                                            () => dispatch(onAddDelCountProductBtn(productInBasket.id, -1))
                                         }
                                 >
                                     <FormattedMessage
@@ -181,7 +181,7 @@ const Basket = () => {
                                 <span className={classes.productCount}>{productInBasket.productQuantity}</span>
                                 <button className={classes.addBtn}
                                         onClick={
-                                            () => dispatch(onUpDownCountProductBtn(productInBasket.id, 1))
+                                            () => dispatch(onAddDelCountProductBtn(productInBasket.id, 1))
                                         }
                                 >
                                     <FormattedMessage

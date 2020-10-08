@@ -10,5 +10,7 @@
   "toMainPage": "Вернуться на главную страницу",
   "nameSurnamePlaceholder": "Введите имя и фамилию",
   "emailPlaceholder": "Введите адрес электронной почты",
-  "phoneNumberPlaceholder": "Введите номер телефона"
+  "phoneNumberPlaceholder": "Введите номер телефона",
+  "formAlertMessage": "Заказ оформлен, в ближайшее время с вами свяжется представитель компании :)",
+  "formAlertTimeMessage": "Сообщенее исчезнет автоматический через 5 секунд"
 }

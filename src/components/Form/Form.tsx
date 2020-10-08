@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useFormik} from 'formik';
 import {createUseStyles} from "react-jss";
 import {useHistory} from "react-router-dom";
@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
         padding: 5,
         marginTop: -20,
         marginBottom: 10,
-        width: 'fit-content'
+        width: "fit-content"
     },
     fieldLabel: {
         visibility: "hidden",
@@ -52,6 +52,19 @@ const useStyles = createUseStyles({
     formBtn: {
         alignSelf: "center",
     },
+    alert: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#094d74",
+        opacity: 0.7,
+        color: "white",
+        fontSize: 20
+    }
 })
 
 const validate = (values: any) => {
@@ -78,6 +91,9 @@ const validate = (values: any) => {
 };
 
 const Form = () => {
+
+    const [alertShow, setAlertShow] = useState(false)
+
     const classes = useStyles()
     const history = useHistory()
     const dispatch = useDispatch()
@@ -90,74 +106,101 @@ const Form = () => {
             email: '',
         },
         validate,
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit: () => {
+            //TODO: отправить values на сервак
+            //TODO: ресетнуть форму
+            //alert(JSON.stringify(values, null, 2));
             dispatch(onSubmitForm([]))
-            history.push('/')
+            setAlertShow(true)
+            setTimeout(() => setAlertShow(false), 5000)
+            setTimeout(() => history.push('/'), 5000)
         },
-    });
-
+    })
 
     return (
-        <div className={classes.formWrapper}>
-            <form onSubmit={formik.handleSubmit} className={classes.form}>
-                <label className={classes.fieldLabel} htmlFor="fio">First and second name</label>
-                <input
-                    className={classes.fioField}
-                    id="fio"
-                    name="fio"
-                    type="text"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.fio}
-                    placeholder={intl.formatMessage({id: 'nameSurnamePlaceholder'})}
-                />
-                {formik.touched.fio && formik.errors.fio ? (
-                    <div className={classes.error}>{formik.errors.fio}</div>
-                ) : null}
+        <>
+            {
+                alertShow &&
+                <div className={classes.alert}>
+                    <span>
+                        <FormattedMessage
+                            id='formAlertMessage'
+                            defaultMessage='The order has been placed, a representative of the company will contact you shortly :)'
+                        />
+                    </span>
 
-                <label className={classes.fieldLabel} htmlFor="email">Email Address</label>
-                <input
-                    className={classes.emailField}
-                    id="email"
-                    name="email"
-                    type="email"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email}
-                    placeholder={intl.formatMessage({id: 'emailPlaceholder'})}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                    <div className={classes.error}>{formik.errors.email}</div>
-                ) : null}
+                    <p>
+                        {
+                            //TODO: сделать счетчик таймера, если хватит времени
+                        }
+                        <FormattedMessage
+                            id='formAlertTimeMessage'
+                            defaultMessage='The message will disappear automatically after 5 seconds'
+                        />
+                    </p>
+                </div>
+            }
 
-                <label className={classes.fieldLabel} htmlFor="phoneNumber">Phone number</label>
-                <input
-                    className={classes.phoneField}
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    type="text"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.phoneNumber}
-                    placeholder={intl.formatMessage({id: 'phoneNumberPlaceholder'})}
-                />
-                {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-                    <div className={classes.error}>{formik.errors.phoneNumber}</div>
-                ) : null}
-
-                <button
-                    className={classes.formBtn}
-                    type="submit"
-                    disabled={!(formik.isValid && formik.dirty)}
-                >
-                    <FormattedMessage
-                        id='makeAnOrder'
-                        defaultMessage='Make an order'
+            <div className={classes.formWrapper}>
+                <form onSubmit={formik.handleSubmit} className={classes.form}>
+                    <label className={classes.fieldLabel} htmlFor="fio">First and second name</label>
+                    <input
+                        className={classes.fioField}
+                        id="fio"
+                        name="fio"
+                        type="text"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.fio}
+                        placeholder={intl.formatMessage({id: 'nameSurnamePlaceholder'})}
                     />
-                </button>
-            </form>
-        </div>
+                    {formik.touched.fio && formik.errors.fio ? (
+                        <div className={classes.error}>{formik.errors.fio}</div>
+                    ) : null}
+
+                    <label className={classes.fieldLabel} htmlFor="email">Email Address</label>
+                    <input
+                        className={classes.emailField}
+                        id="email"
+                        name="email"
+                        type="email"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.email}
+                        placeholder={intl.formatMessage({id: 'emailPlaceholder'})}
+                    />
+                    {formik.touched.email && formik.errors.email ? (
+                        <div className={classes.error}>{formik.errors.email}</div>
+                    ) : null}
+
+                    <label className={classes.fieldLabel} htmlFor="phoneNumber">Phone number</label>
+                    <input
+                        className={classes.phoneField}
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        type="text"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.phoneNumber}
+                        placeholder={intl.formatMessage({id: 'phoneNumberPlaceholder'})}
+                    />
+                    {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+                        <div className={classes.error}>{formik.errors.phoneNumber}</div>
+                    ) : null}
+
+                    <button
+                        className={classes.formBtn}
+                        type="submit"
+                        disabled={!(formik.isValid && formik.dirty)}
+                    >
+                        <FormattedMessage
+                            id='makeAnOrder'
+                            defaultMessage='Make an order'
+                        />
+                    </button>
+                </form>
+            </div>
+        </>
     );
 };
 

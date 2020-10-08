@@ -6,30 +6,31 @@ import {IStore} from '../../interfaces/interfaces'
 import {currencyConvert} from "../../libs/currencyConvert"
 import {onAddInBasketBtnClick} from "../../store/actionCreators/actionCreators"
 import {FormattedMessage} from "react-intl";
-import {CURRENCY_COURSE_RUB_EURO} from "../../constants";
+import {CURRENCY_COURSE_RUB_EURO} from "../globalConstants/globalConstants";
 
 const useStyles = createUseStyles({
     productCard: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        boxShadow: [
-            [0, 0, 6, 2, 'gray'],
-        ],
-        padding: 10,
-        backgroundColor: "white",
+        padding: 20,
+        backgroundColor: "#9cb9d1",
+        color: "#094d74",
+        borderRadius: 5,
+        "&:hover": {
+            boxShadow: [
+                [0, 0, 6, 2, 'gray'],
+            ],
+        }
     },
     productCardAdded: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        border: [
-            [1, 'solid', 'blue']
-        ],
-        padding: 10,
-        backgroundColor: "white",
-        opacity: 0.8
-
+        color: "white",
+        borderRadius: 5,
+        padding: 20,
+        backgroundColor: "#759cd8",
     },
     productCardTitle: {
         marginBottom: 20,
@@ -46,10 +47,10 @@ const useStyles = createUseStyles({
 })
 
 const ProductCard = (props: IProduct) => {
-    const lang = useSelector((state: IStore) => state.lang)
-    const basket = useSelector((state: IStore) => state.basket)
-    const dispatch = useDispatch()
     const classes = useStyles()
+    const lang: string = useSelector((state: IStore) => state.lang)
+    const basket: IProduct[] = useSelector((state: IStore) => state.basket)
+    const dispatch = useDispatch()
 
     const indexProductInBasket = basket.findIndex((item) => item.id === props.id)
 

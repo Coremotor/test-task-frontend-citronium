@@ -3,9 +3,8 @@ import {
     ON_LANG_BTN_CLICK,
     ON_PRODUCT_COUNT_ZERO,
     ON_SUBMIT_FORM,
-    ON_UP_DOWN_COUNT_PRODUCT_BTN,
+    ON_ADD_DEL_COUNT_PRODUCT_BTN,
     SET_CURRENT_PAGE,
-    SET_CURRENT_PAGE_PRODUCTS
 } from "../actionTypes/actionTypes";
 import {IProduct} from "../../interfaces/interfaces"
 
@@ -30,9 +29,9 @@ export function onSubmitForm(emptyArr: []) {
     }
 }
 
-export function onUpDownCountProductBtn(productInBasketId: string, count: number) {
+export function onAddDelCountProductBtn(productInBasketId: string, count: number) {
     return {
-        type: ON_UP_DOWN_COUNT_PRODUCT_BTN,
+        type: ON_ADD_DEL_COUNT_PRODUCT_BTN,
         productInBasketId,
         count,
     }
@@ -42,13 +41,6 @@ export function onProductCountZero(productInBasketId: string) {
     return {
         type: ON_PRODUCT_COUNT_ZERO,
         productInBasketId,
-    }
-}
-
-export function setCurrentPageProducts(currentPageProducts: IProduct[]) {
-    return {
-        type: SET_CURRENT_PAGE_PRODUCTS,
-        currentPageProducts,
     }
 }
 

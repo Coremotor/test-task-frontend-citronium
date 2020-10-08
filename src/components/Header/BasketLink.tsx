@@ -1,7 +1,7 @@
 import React from "react";
 import {createUseStyles} from "react-jss";
 import {useSelector} from "react-redux";
-import {IStore} from "../../interfaces/interfaces";
+import {IProduct, IStore} from "../../interfaces/interfaces";
 import {NavLink} from "react-router-dom";
 import {reduceProductInBasketQuantity} from "../../libs/reduceProductInBasketProps";
 
@@ -21,8 +21,9 @@ const useStyles = createUseStyles({
 const BasketLink = () => {
 
     const classes = useStyles()
-    const basket = useSelector((state: IStore) => state.basket)
+    const basket: IProduct[] = useSelector((state: IStore) => state.basket)
 
+    //получение общего числа товаров в корзине
     const productsInBasketQuantity = reduceProductInBasketQuantity(basket)
 
     return (
@@ -30,7 +31,6 @@ const BasketLink = () => {
             <NavLink className={classes.link} to="/basket">
                 <img src="./img/basketIcon.svg" alt="Go to bucket"/>
             </NavLink>
-
             {
                 productsInBasketQuantity !== 0 &&
                 <span>

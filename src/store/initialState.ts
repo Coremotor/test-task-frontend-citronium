@@ -7,9 +7,7 @@ const initialState: IStore = {
         ...genericProductArray(100)
     ],
     basket: [],
-    pagesArray: [],
-    currentPage: 2,
-    currentPageProducts: []
+    currentPage: 1,
 }
 
 export default initialState;

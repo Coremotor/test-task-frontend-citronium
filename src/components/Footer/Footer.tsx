@@ -3,7 +3,7 @@ import {createUseStyles} from "react-jss";
 
 const useStyles = createUseStyles({
     footer: {
-        backgroundColor: "gray",
+        backgroundColor: "#094d74",
     },
     footerInner: {
         maxWidth: 1280,
@@ -28,7 +28,7 @@ const Footer = () => {
 
     return (
         <footer className={classes.footer}>
-            <div className={classes.footerInner}>Footer</div>
+            <div className={classes.footerInner}>Test App for Citronium</div>
         </footer>
     )
 }

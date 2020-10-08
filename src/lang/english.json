@@ -10,5 +10,7 @@
   "toMainPage": "Go to main page",
   "nameSurnamePlaceholder": "Enter first and last name",
   "emailPlaceholder": "Enter email",
-  "phoneNumberPlaceholder": "Enter phone number"
+  "phoneNumberPlaceholder": "Enter phone number",
+  "formAlertMessage": "The order has been placed, a representative of the company will contact you shortly :)",
+  "formAlertTimeMessage": "The message will disappear automatically after 5 seconds"
 }
