@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import {createUseStyles} from "react-jss";
-import {shallowEqual, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {IStore} from '../../interfaces/interfaces';
 
 const useStyles = createUseStyles({
@@ -44,16 +44,16 @@ const useStyles = createUseStyles({
 
 const ProductList = () => {
 
-    const products = useSelector((state: IStore) => state.products, shallowEqual)
+    const currentPageProducts = useSelector((state: IStore) => state.currentPageProducts)
     const classes = useStyles()
 
     return (
         <section className={classes.productList}>
             {
-                products.map((product) => {
+                currentPageProducts.map((currentPageProduct) => {
                     return <ProductCard
-                        key={product.id}
-                        {...product}
+                        key={currentPageProduct.id}
+                        {...currentPageProduct}
                     />
                 })
             }

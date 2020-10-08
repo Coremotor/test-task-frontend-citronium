@@ -1,7 +1,10 @@
 export interface IStore {
     lang: string,
     products: IProduct[],
-    basket: IProduct[]
+    basket: IProduct[],
+    pagesArray: number[],
+    currentPage: number,
+    currentPageProducts: IProduct[]
 }
 
 export interface IProduct {

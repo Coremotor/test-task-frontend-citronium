@@ -7,6 +7,7 @@ import {IStore} from "../interfaces/interfaces";
 const persistedState: IStore = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState') as string) : initialState
 
 const store = createStore(reducer, persistedState, devToolsEnhancer({}));
+// const store = createStore(reducer, devToolsEnhancer({}));
 
 store.subscribe(()=>{
     localStorage.setItem('reduxState', JSON.stringify(store.getState()))

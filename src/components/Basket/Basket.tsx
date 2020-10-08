@@ -3,10 +3,11 @@ import {createUseStyles} from "react-jss";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {IStore, IProduct} from '../../interfaces/interfaces';
-import {currencyConvert, currencyCourseRUBEURO} from "../../libs/currencyConvert";
+import {currencyConvert} from "../../libs/currencyConvert";
 import {onProductCountZero, onUpDownCountProductBtn} from "../../store/actionCreators/actionCreators";
 import {reduceProductInBasketPrice, reduceProductInBasketQuantity} from "../../libs/reduceProductInBasketProps";
 import {FormattedMessage} from "react-intl";
+import {CURRENCY_COURSE_RUB_EURO} from "../../constants";
 
 const useStyles = createUseStyles({
     basket: {
@@ -115,6 +116,7 @@ const Basket = () => {
 
 
     //TODO: варнинг в консоли - разобраться
+    //скорее всего переноситьо в другую компоненту
     basket.forEach((productInBasket) => {
         if (productInBasket.productQuantity === 0) {
             dispatch(onProductCountZero(productInBasket.id))
@@ -158,7 +160,7 @@ const Basket = () => {
                                     {
                                         lang === 'en'
                                             ? productInBasket.productPriceEURO
-                                            : currencyConvert(productInBasket.productPriceEURO, currencyCourseRUBEURO)}
+                                            : currencyConvert(productInBasket.productPriceEURO, CURRENCY_COURSE_RUB_EURO)}
                                     <span className={classes.basketCurrency}>
                                         {
                                             lang === 'en' ? "EURO" : "RUB"
@@ -193,7 +195,7 @@ const Basket = () => {
                                     {
                                         lang === 'en'
                                             ? productInBasket.productPriceEURO * productInBasket.productQuantity
-                                            : Number(currencyConvert(productInBasket.productPriceEURO, currencyCourseRUBEURO) * productInBasket.productQuantity).toFixed(2)
+                                            : Number(currencyConvert(productInBasket.productPriceEURO, CURRENCY_COURSE_RUB_EURO) * productInBasket.productQuantity).toFixed(2)
                                     }
                                     <span className={classes.basketCurrency}>
                                         {
@@ -230,7 +232,7 @@ const Basket = () => {
                                 {
                                     lang === 'en'
                                         ? reduceProductInBasketPrice(basket)
-                                        : Number(currencyConvert(reduceProductInBasketPrice(basket), currencyCourseRUBEURO)).toFixed(2)
+                                        : Number(currencyConvert(reduceProductInBasketPrice(basket), CURRENCY_COURSE_RUB_EURO)).toFixed(2)
                                 }
                             </span>
                         <span className={classes.basketCurrency}>
