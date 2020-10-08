@@ -2,6 +2,7 @@
   "marketName": "Магазин",
   "addInBasket": "Добавить в корзину",
   "shoppingCart": "Корзина",
+  "shoppingCartEmpty": "Корзина пуста",
   "add": "Добавить",
   "del": "Удалить",
   "allProductCount": "Общее количество товаров:",

@@ -2,6 +2,7 @@
   "marketName": "Market",
   "addInBasket": "Add to Shopping Cart",
   "shoppingCart": "Shopping Cart",
+  "shoppingCartEmpty": "Basket is empty",
   "add": "Add",
   "del": "Delete",
   "allProductCount": "All product count:",

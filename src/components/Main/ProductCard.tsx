@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: 20,
+        height: 330,
         backgroundColor: "#9cb9d1",
         color: "#094d74",
         borderRadius: 5,
@@ -21,22 +21,24 @@ const useStyles = createUseStyles({
             boxShadow: [
                 [0, 0, 6, 2, 'gray'],
             ],
-        }
+        },
+        padding: 20,
     },
     productCardAdded: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         color: "white",
+        backgroundColor: "#759cd8",
         borderRadius: 5,
         padding: 20,
-        backgroundColor: "#759cd8",
     },
     productCardTitle: {
         marginBottom: 20,
     },
     img: {
-        width: "100%"
+        width: "100%",
+        borderRadius: 5
     },
     productCardPriceCurrency: {
         marginLeft: 10

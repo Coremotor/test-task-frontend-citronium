@@ -132,7 +132,13 @@ const Basket = () => {
                 />
             </h2>
             {
-                basket.length === 0 && <span className={classes.basketEmpty}>Basket is empty</span>
+                basket.length === 0 &&
+                <span className={classes.basketEmpty}>
+                    <FormattedMessage
+                        id='shoppingCartEmpty'
+                        defaultMessage='Basket is empty'
+                    />
+                </span>
             }
             <ul className={classes.list}>
                 {
