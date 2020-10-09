@@ -1,5 +1,6 @@
 import {IProduct} from "../interfaces/interfaces";
 
+//построение масива для отображения продуктов на странице
 export const buildArrayProductsForShowOnPage = (currentPage: number, RENDER_PAGE_QUANTITY: number, products: IProduct[]) => {
     const showProductsArray: IProduct[] = []
     let endOfPageCount = currentPage * RENDER_PAGE_QUANTITY
