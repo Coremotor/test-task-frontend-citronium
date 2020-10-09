@@ -23,6 +23,8 @@ const useStyles = createUseStyles({
 function App() {
 
     const classes = useStyles()
+    let a = window.innerWidth
+    console.log(a)
 
     let locale: string = useSelector((state: IStore) => state.lang)
     let lang: any

@@ -5,7 +5,7 @@ import {createUseStyles} from "react-jss";
 
 const useStyles = createUseStyles({
     main: {
-        height: "1000vh",
+        height: "100000vh",
         backgroundColor: "#eef0f6",
         padding: {
             top: 20,

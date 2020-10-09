@@ -1,5 +1,6 @@
 import React from "react";
 import {createUseStyles} from "react-jss";
+import {FormattedMessage} from "react-intl";
 
 const useStyles = createUseStyles({
     footer: {
@@ -28,7 +29,12 @@ const Footer = () => {
 
     return (
         <footer className={classes.footer}>
-            <div className={classes.footerInner}>Test App for Citronium</div>
+            <div className={classes.footerInner}>
+                <FormattedMessage
+                    id='title'
+                    defaultMessage='Test App for Citronium'
+                />
+            </div>
         </footer>
     )
 }

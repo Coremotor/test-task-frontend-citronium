@@ -27,6 +27,24 @@ const useStyles = createUseStyles({
     item: {
         marginRight: 10,
     },
+    btn: {
+        border: "none",
+        color: "white",
+        backgroundColor: "#094d74",
+        padding: 5,
+        "&:hover": {
+            boxShadow: [
+                [0, 0, 6, 2, 'gray'],
+            ],
+        }
+    },
+    btnActive: {
+        border: "none",
+        color: "white",
+        backgroundColor: "#094d74",
+        opacity: 0.5,
+        padding: 5,
+    }
 })
 
 const Pagination = () => {
@@ -51,6 +69,7 @@ const Pagination = () => {
                             key={index}
                             className={classes.item}>
                             <button
+                                className={page === currentPage ? classes.btnActive : classes.btn}
                                 onClick={
                                     () => {
                                         dispatch(setCurrentPage(page))

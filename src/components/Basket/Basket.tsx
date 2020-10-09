@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
     basket: {
         maxWidth: 1280,
         width: "95%",
-        height: "1000vh",
+        height: "10000vh",
         display: "flex",
         flexDirection: "column",
         padding: {
@@ -23,11 +23,6 @@ const useStyles = createUseStyles({
         marginRight: "auto",
         marginLeft: "auto",
         marginBottom: 30,
-    },
-    '@media (max-width: 650px)': {
-        basket: {
-            fontSize: 12
-        }
     },
     basketEmpty: {
         textAlign: "center",
@@ -52,6 +47,10 @@ const useStyles = createUseStyles({
     number: {
         marginRight: 5,
     },
+    img: {
+        display: "none",
+        width: 200
+    },
     name: {
         marginRight: 10,
     },
@@ -61,13 +60,34 @@ const useStyles = createUseStyles({
     price: {
         marginRight: "auto",
     },
+    btnsWrapper: {
+        display: "flex"
+    },
     delBtn: {
+        border: "none",
+        color: "white",
+        backgroundColor: "#094d74",
+        padding: 5,
+        "&:hover": {
+            boxShadow: [
+                [0, 0, 6, 2, 'gray'],
+            ]
+        },
         marginRight: 10,
     },
     productCount: {
         marginRight: 10,
     },
     addBtn: {
+        border: "none",
+        color: "white",
+        backgroundColor: "#094d74",
+        padding: 5,
+        "&:hover": {
+            boxShadow: [
+                [0, 0, 6, 2, 'gray'],
+            ]
+        },
         marginRight: 30,
     },
     summaryPrice: {
@@ -105,7 +125,54 @@ const useStyles = createUseStyles({
                 [0, 0, 6, 2, 'gray'],
             ],
         },
-    }
+    },
+
+    '@media (max-width: 750px)': {
+        list: {
+            paddingLeft: 0
+        },
+        item: {
+            flexDirection: "column",
+            alignItems: "center",
+            marginBottom: 20
+        },
+        number: {
+            marginRight: 0,
+            marginBottom: 10
+        },
+        img: {
+            display: "block",
+            width: 200
+        },
+        name: {
+            marginRight: 0,
+            marginBottom: 10
+        },
+        description: {
+            marginRight: 0,
+            marginBottom: 10
+        },
+        price: {
+            marginRight: 0,
+            marginBottom: 10
+        },
+        addBtn: {
+            marginRight: 0,
+        },
+        btnsWrapper: {
+            borderBottom: ["1px", "solid", "gray"],
+            paddingBottom: 10
+        },
+        summaryPrice: {
+            marginTop: 5,
+            marginRight: 0,
+            marginBottom: 10
+        },
+        wrapper: {
+            flexDirection: "column",
+            alignItems: "center"
+        }
+    },
 })
 
 const Basket = () => {
@@ -147,6 +214,9 @@ const Basket = () => {
                         return (
                             <li key={productInBasket.id} className={classes.item}>
                                 <span className={classes.number}>{index + 1 + '.'}</span>
+                                <img className={classes.img}
+                                     src={productInBasket.productImgUrl}
+                                     alt="Картинка товара"/>
                                 <span
                                     className={classes.name}>{
                                     lang === 'en'
@@ -174,27 +244,29 @@ const Basket = () => {
                                     </span>
                                 </span>
 
-                                <button className={classes.delBtn}
-                                        onClick={
-                                            () => dispatch(onAddDelCountProductBtn(productInBasket.id, -1))
-                                        }
-                                >
-                                    <FormattedMessage
-                                        id='del'
-                                        defaultMessage='Delete'
-                                    />
-                                </button>
-                                <span className={classes.productCount}>{productInBasket.productQuantity}</span>
-                                <button className={classes.addBtn}
-                                        onClick={
-                                            () => dispatch(onAddDelCountProductBtn(productInBasket.id, 1))
-                                        }
-                                >
-                                    <FormattedMessage
-                                        id='add'
-                                        defaultMessage='Add'
-                                    />
-                                </button>
+                                <div className={classes.btnsWrapper}>
+                                    <button className={classes.delBtn}
+                                            onClick={
+                                                () => dispatch(onAddDelCountProductBtn(productInBasket.id, -1))
+                                            }
+                                    >
+                                        <FormattedMessage
+                                            id='del'
+                                            defaultMessage='Delete'
+                                        />
+                                    </button>
+                                    <span className={classes.productCount}>{productInBasket.productQuantity}</span>
+                                    <button className={classes.addBtn}
+                                            onClick={
+                                                () => dispatch(onAddDelCountProductBtn(productInBasket.id, 1))
+                                            }
+                                    >
+                                        <FormattedMessage
+                                            id='add'
+                                            defaultMessage='Add'
+                                        />
+                                    </button>
+                                </div>
 
                                 <span
                                     className={classes.summaryPrice}>

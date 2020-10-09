@@ -63,7 +63,11 @@ const useStyles = createUseStyles({
         backgroundColor: "#094d74",
         opacity: 0.7,
         color: "white",
-        fontSize: 20
+        fontSize: 20,
+        textAlign: "center",
+        '@media (max-width: 560px)': {
+           fontSize: 14,
+        },
     }
 })
 

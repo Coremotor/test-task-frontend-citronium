@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: 330,
+        minHeight: 330,
         backgroundColor: "#9cb9d1",
         color: "#094d74",
         borderRadius: 5,
@@ -28,6 +28,7 @@ const useStyles = createUseStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        minHeight: 330,
         color: "white",
         backgroundColor: "#759cd8",
         borderRadius: 5,
@@ -45,6 +46,25 @@ const useStyles = createUseStyles({
     },
     productCardPrice: {
         marginBottom: 20
+    },
+    productCardBtn: {
+        border: "none",
+        color: "white",
+        backgroundColor: "#094d74",
+        padding: 5,
+        "&:hover": {
+            boxShadow: [
+                [0, 0, 6, 2, 'gray'],
+            ],
+        }
+    },
+
+    productCardBtnDisabled: {
+        border: "none",
+        color: "white",
+        backgroundColor: "#094d74",
+        opacity: 0.5,
+        padding: 5,
     }
 })
 
@@ -91,6 +111,7 @@ const ProductCard = (props: IProduct) => {
             </span>
 
             <button
+                className={(indexProductInBasket === -1 ? false : basket[indexProductInBasket].inBasket) ? classes.productCardBtnDisabled : classes.productCardBtn}
                 onClick={
                     () => {
                         dispatch(onAddInBasketBtnClick({...props, inBasket: true}))
