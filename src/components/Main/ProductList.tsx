@@ -4,7 +4,7 @@ import {createUseStyles} from "react-jss";
 import {useSelector} from "react-redux";
 import {IProduct, IStore} from '../../interfaces/interfaces';
 import {buildArrayProductsForShowOnPage} from "../../libs/buildArrayProductsForShowOnPage";
-import {RENDER_PAGE_QUANTITY} from "../globalConstants/globalConstants";
+import {RENDER_ON_PAGE_PRODUCTS_QUANTITY} from "../globalConstants/globalConstants";
 
 const useStyles = createUseStyles({
     productList: {
@@ -50,7 +50,8 @@ const ProductList = () => {
     const products: IProduct[] = useSelector((state: IStore) => state.products)
     const classes = useStyles()
 
-    const currentPageProducts: IProduct[] = buildArrayProductsForShowOnPage(currentPage, RENDER_PAGE_QUANTITY, products)
+    //построение масива для отображения продуктов на странице
+    const currentPageProducts: IProduct[] = buildArrayProductsForShowOnPage(currentPage, RENDER_ON_PAGE_PRODUCTS_QUANTITY, products)
 
     return (
         <section className={classes.productList}>

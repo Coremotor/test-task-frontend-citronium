@@ -3,7 +3,7 @@ import {createUseStyles} from "react-jss";
 import {useDispatch, useSelector} from "react-redux";
 import {IProduct, IStore} from "../../interfaces/interfaces";
 import {setCurrentPage} from "../../store/actionCreators/actionCreators";
-import {RENDER_PAGE_QUANTITY} from "../globalConstants/globalConstants";
+import {RENDER_ON_PAGE_PRODUCTS_QUANTITY} from "../globalConstants/globalConstants";
 
 const useStyles = createUseStyles({
     list: {
@@ -54,7 +54,9 @@ const Pagination = () => {
     const products: IProduct[] = useSelector((state: IStore) => state.products)
     const currentPage: number = useSelector((state: IStore) => state.currentPage)
 
-    const pagesQuantity: number = Math.ceil(products.length / RENDER_PAGE_QUANTITY)
+    //получаем количество страниц для пагинации
+    const pagesQuantity: number = Math.ceil(products.length / RENDER_ON_PAGE_PRODUCTS_QUANTITY)
+    //формируем массив для рендера пагинации
     const pagesArray: number[] = []
     for (let i = 1; i <= pagesQuantity; i++) {
         pagesArray.push(i)
