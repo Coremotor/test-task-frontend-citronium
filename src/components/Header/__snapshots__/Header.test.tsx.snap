@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should  1`] = `
+<header
+  className="header-0-2-1"
+>
+  <div
+    className="headerInner-0-2-2"
+  >
+    <NavLink
+      className="headerTitleLink-0-2-3"
+      to="/"
+    >
+      <img
+        alt="Лого"
+        className="headerImg-0-2-4"
+        src="https://citronium.ru/wp-content/uploads/2019/01/Resurs-12.png"
+      />
+    </NavLink>
+    <SwitchLang />
+    <BasketLink />
+  </div>
+</header>
+`;
+
+exports[`Header should equal Snapshot 1`] = `
+<header
+  className="header-0-2-1"
+>
+  <div
+    className="headerInner-0-2-2"
+  >
+    <NavLink
+      className="headerTitleLink-0-2-3"
+      to="/"
+    >
+      <img
+        alt="Лого"
+        className="headerImg-0-2-4"
+        src="https://citronium.ru/wp-content/uploads/2019/01/Resurs-12.png"
+      />
+    </NavLink>
+    <SwitchLang />
+    <BasketLink />
+  </div>
+</header>
+`;

@@ -1,6 +1,6 @@
 import React from "react";
 import SwitchLang from "./SwitchLang";
-import Basket from "./BasketLink";
+import BasketLink from "./BasketLink";
 import {createUseStyles} from 'react-jss'
 import {NavLink} from "react-router-dom";
 
@@ -51,7 +51,7 @@ const Header = () => {
                     <img className={classes.headerImg} src="https://citronium.ru/wp-content/uploads/2019/01/Resurs-12.png" alt="Лого"/>
                 </NavLink>
                 <SwitchLang/>
-                <Basket/>
+                <BasketLink/>
             </div>
         </header>
     )
